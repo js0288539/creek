@@ -1,0 +1,21 @@
+Think Python 2e
+Chapter 2 Exercises
+
+None of these problems require code, but I'm doing them anyway.
+
+2.1.
+	1. n = 42 is a legal statement, but 42 = n is not, since you cannot assign the value of a variable to a set literal value:
+
+		>>> 42 = n
+		SyntaxError: can't assign to literal
+
+	2. x = y = 1 is a completely legal statement. It initializes x and y as variables and sets them both equal to 1.
+
+	3. Even though Python doesn't use semi-colons to denote the end of a line of code, putting a semi-colon at the end
+		of a line of code is perfectly legal and the code will run as intended.
+
+	4. Putting a period at the end of a statement is invalid syntax and an error will be thrown.
+
+	5. Even if x and y are defined, entering "xy" as if you were multiplying the two together will throw an error, since
+		the interpreter is looking for an "xy" variable that isn't defined. You cannot multiply two values using that
+		notation in Python.
