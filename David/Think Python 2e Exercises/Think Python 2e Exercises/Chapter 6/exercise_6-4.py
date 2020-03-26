@@ -6,5 +6,14 @@
 #       a/b is a power of b"
 
 def is_power(a, b):
-    
-# UNFINISHED
+    if a == 1:
+        return True
+    else:
+        if a%b != 0:
+            return False
+        else:
+            return is_power((a/b), b)
+
+# NOTE TO SELF:
+# IF YOUR RECURSIVE CODE DOESN'T RETURN THE VALUES YOU WANT IT TO
+# CHECK TO SEE IF YOU FORGOT A DAMNED RETURN STATEMENT.
