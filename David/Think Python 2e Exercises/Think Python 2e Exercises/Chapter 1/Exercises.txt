@@ -1,0 +1,38 @@
+Think Python 2e
+Chapter 1 Exercises
+
+No code is requried for any of these, but I answered them anyway.
+
+1.1.
+	1. 	In a print statement, if you leave out one or both parentheses, the interpreter will throw a
+			syntax error that tells you that parentheses are missing.
+	
+	2. 	In a print statement, if you leave out one of the quotation marks, it will throw an error:
+			
+			>>> print ("Hello, world!)
+			SyntaxError: EOL while scanning string literal
+	
+		If you leave out both quotation marks, the result will depend on what is typed and what is defined:
+
+			>>> print (Hello, world!)
+			This returns an invalid syntax error.
+	
+			>>> print (slame)
+			This returns a "name not defined" error. However, if we do define "slame"
+
+			>>> slame = "4"
+			>>> print (slame)
+			This prints the character "4".
+
+			>>> slame = "4"
+			>>> treble = "6"
+			>>> print (slame treble)
+			This returns a syntax error.
+
+	3.	Putting a plus sign in front of a number just returns that number.
+
+		Entering the statement 2++2 just returns 4, as if you entered 2 + 2 normally.
+
+	4. 	Typing a number with leading zeros results in an "invalid token" error being thrown.
+
+	5. 	Typing two values with no operator between them results in a syntax error.
