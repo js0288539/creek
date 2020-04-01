@@ -1,0 +1,1 @@
+In Python you can read text files from input and work with the data however you want
