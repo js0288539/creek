@@ -1,0 +1,98 @@
+#This Setup file is used by the setup.py script to configure the
+#python extensions. You will likely use the "config.py" which will
+#build a correct Setup file for you based on your system settings.
+#If not, the format is simple enough to edit by hand. First change
+#the needed commandline flags for each dependency, then comment out
+#any unavailable optional modules in the first optional section.
+
+
+# Pygame 1.9.2 Windows dependency macros.
+SDL = -Iprebuilt-x64/include -Iprebuilt-x64/include/SDL -Lprebuilt-x64/lib -lSDL
+FONT = -lSDL_ttf
+IMAGE = -lSDL_image
+MIXER = -lSDL_mixer
+PNG = -lpng
+JPEG = -ljpeg
+FREETYPE = -Iprebuilt-x64/include/freetype2 -lfreetype
+TIFF = -ltiff
+WEBP = -lwebp
+ZLIB = -lz
+VORBISFILE = -lvorbisfile
+VORBIS = -Iprebuilt-x64/include/vorbis -lvorbis
+OGG = -Iprebuilt-x64/include/ogg -logg
+WEBP = -lwebp
+MPG123 = -lmpg123
+PORTMIDI = -lportmidi
+PORTTIME =
+# Ensure make_prebuilt.py includes the freetype2 headers.
+COPYHDRS_FREETYPE = -lfreetype -Iprebuilt-x64/include/freetype2/freetype -Iprebuilt-x64/include/freetype2/freetype/config
+# The DLL's
+COPYLIB_SDL -lgcc -Lprebuilt-x64/lib/SDL.dll
+COPYLIB_SDL_ttf -lSDL -lfreetype -Lprebuilt-x64/lib/SDL_ttf.dll
+COPYLIB_SDL_image -lSDL -ljpef -lpng -ltiff -Lprebuilt-x64/lib/SDL_image.dll
+COPYLIB_SDL_mixer -lSDL -lvorbisfile -lsmpeg -Lprebuilt-x64/lib/SDL_mixer.dll
+COPYLIB_freetype -lz -Lprebuilt-x64/lib/libfreetype-6.dll
+COPYLIB_tiff -ljpeg -lz -Lprebuilt-x64/lib/libtiff-5.dll
+COPYLIB_png -lz -Lprebuilt-x64/lib/libpng16-16.dll
+COPYLIB_jpeg -Lprebuilt-x64/lib/libjpeg-8.dll
+COPYLIB_webp -Lprebuilt-x64/lib/libwebp-5.dll
+COPYLIB_mpg123 -Lprebuilt-x64/lib/libmpg123-0.dll
+COPYLIB_z -Lprebuilt-x64/lib/zlib1.dll
+COPYLIB_vorbisfile -lvorbis -Lprebuilt-x64/lib/libvorbisfile-3.dll
+COPYLIB_vorbis -logg -Lprebuilt-x64/lib/libvorbis-0.dll
+COPYLIB_ogg -Lprebuilt-x64/lib/libogg-0.dll
+COPYLIB_portmidi -Lprebuilt-x64/lib/portmidi.dll
+COPYLIB_gcc -Lprebuilt-x64/lib/libgcc_s_sjlj-1.dll
+COPYLIB_stdcxx -Lprebuilt-x64/lib/libstdc++-6.dll
+# Windows specific flags for Pygame modules.
+SCRAP = -luser32 -lgdi32
+
+DEBUG = 
+
+#the following modules are optional. you will want to compile
+#everything you can, but you can ignore ones you don't have
+#dependencies for, just comment them out
+
+imageext src_c/imageext.c $(SDL) $(IMAGE) $(PNG) $(JPEG) $(DEBUG)
+font src_c/font.c $(SDL) $(FONT) $(DEBUG)
+mixer src_c/mixer.c $(SDL) $(MIXER) $(DEBUG)
+mixer_music src_c/music.c $(SDL) $(MIXER) $(DEBUG)
+scrap src_c/scrap.c $(SDL) $(SCRAP) $(DEBUG)
+pypm src_c/pypm.c $(SDL) $(PORTMIDI) $(PORTTIME) $(DEBUG)
+
+GFX = src_c/SDL_gfx/SDL_gfxPrimitives.c
+#GFX = src_c/SDL_gfx/SDL_gfxBlitFunc.c src_c/SDL_gfx/SDL_gfxPrimitives.c
+gfxdraw src_c/gfxdraw.c $(SDL) $(GFX) $(DEBUG)
+
+#optional freetype module (do not break in multiple lines
+#or the configuration script will choke!)
+_freetype src_c/freetype/ft_cache.c src_c/freetype/ft_wrap.c src_c/freetype/ft_render.c  src_c/freetype/ft_render_cb.c src_c/freetype/ft_layout.c src_c/freetype/ft_unicode.c src_c/_freetype.c $(SDL) $(FREETYPE) $(DEBUG)
+
+#these modules are required for pygame to run. they only require
+#SDL as a dependency. these should not be altered
+
+base src_c/base.c $(SDL) $(DEBUG)
+cdrom src_c/cdrom.c $(SDL) $(DEBUG)
+color src_c/color.c $(SDL) $(DEBUG)
+constants src_c/constants.c $(SDL) $(DEBUG)
+display src_c/display.c $(SDL) $(DEBUG)
+event src_c/event.c $(SDL) $(DEBUG)
+fastevent src_c/fastevent.c src_c/fastevents.c $(SDL) $(DEBUG)
+key src_c/key.c $(SDL) $(DEBUG)
+mouse src_c/mouse.c $(SDL) $(DEBUG)
+rect src_c/rect.c $(SDL) $(DEBUG)
+rwobject src_c/rwobject.c $(SDL) $(DEBUG)
+surface src_c/surface.c src_c/alphablit.c src_c/surface_fill.c $(SDL) $(DEBUG)
+surflock src_c/surflock.c $(SDL) $(DEBUG)
+time src_c/time.c $(SDL) $(DEBUG)
+joystick src_c/joystick.c $(SDL) $(DEBUG)
+draw src_c/draw.c $(SDL) $(DEBUG)
+image src_c/image.c $(SDL) $(DEBUG)
+overlay src_c/overlay.c $(SDL) $(DEBUG)
+transform src_c/transform.c src_c/rotozoom.c src_c/scale2x.c src_c/scale_mmx.c $(SDL) $(DEBUG) -D_NO_MMX_FOR_X86_64
+mask src_c/mask.c src_c/bitmask.c $(SDL) $(DEBUG)
+bufferproxy src_c/bufferproxy.c $(SDL) $(DEBUG)
+pixelarray src_c/pixelarray.c $(SDL) $(DEBUG)
+math src_c/math.c $(SDL) $(DEBUG)
+pixelcopy src_c/pixelcopy.c $(SDL) $(DEBUG)
+newbuffer src_c/newbuffer.c $(DEBUG)
